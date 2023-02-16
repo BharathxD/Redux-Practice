@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Counter from "./components/Counter";
+import Counter from "./components/counter/Counter";
 import "./App.css";
 
 function App() {
