@@ -1,25 +1,45 @@
+import React from "react";
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import IActionReducerState from "../../types/state.types";
-import { CounterReducerEnum } from "../../types/state.types";
+import { ICounterReducerState } from "../../types/state.types";
+import { CounterActionType } from "../../constants/CounterActionType";
+import { counterActions } from "../../store";
 
 const Counter: React.FC = () => {
-  const counter = useSelector((state: IActionReducerState) => state.counter);
+  const counter = useSelector((state: ICounterReducerState) => state.counter);
+  const showCounter = useSelector(
+    (state: ICounterReducerState) => state.showCounter
+  );
   const dispatch = useDispatch();
   const incrementHandler = () => {
-    dispatch({ type: CounterReducerEnum.INCREMENT });
+    dispatch(counterActions.increment());
   };
   const decrementHandler = () => {
-    dispatch({ type: CounterReducerEnum.DECREMENT  });
+    dispatch(counterActions.decrement());
   };
-  const toggleCounterHandler = () => {};
+  const increaseHandler = () => {
+    dispatch(
+      counterActions.increase({
+        type: CounterActionType.INCREASE_BY_VALUE,
+        amount: 10,
+      })
+    );
+  };
+  const toggleCounterHandler = () => {
+    dispatch(counterActions.toogleCounter());
+  };
+  const resetCounterHandler = () => {
+    dispatch(counterActions.resetCounter());
+  };
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      <div className={classes.value}>{showCounter && counter}</div>
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={decrementHandler}>Decrement</button>
+        <button onClick={increaseHandler}>Increase by 10</button>
+        <button onClick={resetCounterHandler}>Reset</button>
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>

@@ -1,8 +1,10 @@
-export default interface IActionReducerState {
+export interface IActionReducerState {
   counter: number;
+  showCounter: boolean;
 }
 
-export const enum CounterReducerEnum{
-    INCREMENT = "INCREMENT",
-    DECREMENT = "DECREMENT"
+export interface ICounterReducerAction {
+  type: string;
+  amount: number;
 }
+
