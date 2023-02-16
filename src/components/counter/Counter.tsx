@@ -2,11 +2,12 @@ import React from "react";
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { ICounterReducerState } from "../../types/state.types";
-import { CounterActionType } from "../../constants/CounterActionType";
 import { counterActions } from "../../store";
 
 const Counter: React.FC = () => {
-  const counter = useSelector((state: ICounterReducerState) => state.counter.counter);
+  const counter = useSelector(
+    (state: ICounterReducerState) => state.counter.counter
+  );
   const showCounter = useSelector(
     (state: ICounterReducerState) => state.counter.showCounter
   );
@@ -20,7 +21,6 @@ const Counter: React.FC = () => {
   const increaseHandler = () => {
     dispatch(
       counterActions.increase({
-        type: CounterActionType.INCREASE_BY_VALUE,
         amount: 10,
       })
     );

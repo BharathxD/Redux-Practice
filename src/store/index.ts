@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction, configureStore } from "@reduxjs/toolkit";
 import {
-  ICounterReducerState,
   ICounterReducerAction,
 } from "../types/state.types";
 
-const initialCounterState: ICounterReducerState = {
+const initialCounterState = {
   counter: 0,
   showCounter: true,
 };
@@ -48,7 +47,7 @@ const authenticationSlice = createSlice({
 const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
-    authentication: authenticationSlice.reducer
+    authentication: authenticationSlice.reducer,
   },
 });
 

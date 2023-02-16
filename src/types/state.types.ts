@@ -3,7 +3,6 @@ export interface ICounterReducerState {
 }
 
 export interface ICounterReducerAction {
-  type: string;
   amount: number;
 }
 
