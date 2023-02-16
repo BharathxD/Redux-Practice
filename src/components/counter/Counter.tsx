@@ -6,9 +6,9 @@ import { CounterActionType } from "../../constants/CounterActionType";
 import { counterActions } from "../../store";
 
 const Counter: React.FC = () => {
-  const counter = useSelector((state: ICounterReducerState) => state.counter);
+  const counter = useSelector((state: ICounterReducerState) => state.counter.counter);
   const showCounter = useSelector(
-    (state: ICounterReducerState) => state.showCounter
+    (state: ICounterReducerState) => state.counter.showCounter
   );
   const dispatch = useDispatch();
   const incrementHandler = () => {

@@ -4,11 +4,15 @@ import {
   ICounterReducerAction,
 } from "../types/state.types";
 
-const initialState: ICounterReducerState = { counter: 0, showCounter: true };
+const initialCounterState: ICounterReducerState = {
+  counter: 0,
+  showCounter: true,
+};
+const initialAuthState = { isAuthenticated: false };
 
 const counterSlice = createSlice({
   name: "counter",
-  initialState,
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
       state.counter++;
@@ -23,15 +27,32 @@ const counterSlice = createSlice({
       state.showCounter = !state.showCounter;
     },
     resetCounter(state) {
-        state.counter -= state.counter;
-    }
+      state.counter -= state.counter;
+    },
+  },
+});
+
+const authenticationSlice = createSlice({
+  name: "authentication",
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+    },
   },
 });
 
 const store = configureStore({
-    reducer: counterSlice.reducer
+  reducer: {
+    counter: counterSlice.reducer,
+    authentication: authenticationSlice.reducer
+  },
 });
 
 export const counterActions = counterSlice.actions;
+export const authenticationActions = authenticationSlice.actions;
 
 export default store;
